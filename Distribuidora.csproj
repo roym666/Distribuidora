@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B4430881-503A-41C0-AE8E-5DCDF4323AE1}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Distribuidora</RootNamespace>
+    <AssemblyName>Distribuidora</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportViewer.Common.VS2010.10.0.40219.1\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportViewer.WinForms.VS2010.10.0.40219.1\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.4.2.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\MySQL\MySQL Connector Net 6.4.2\Assemblies\v4.0\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity, Version=6.4.2.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\MySQL\MySQL Connector Net 6.4.2\Assemblies\v4.0\MySql.Data.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CargarExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CargarExcel.Designer.cs">
+      <DependentUpon>CargarExcel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaCobroPorDia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsultaCobroPorDia.Designer.cs">
+      <DependentUpon>ConsultaCobroPorDia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaSaldoPorRuta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsultaSaldoPorRuta.Designer.cs">
+      <DependentUpon>ConsultaSaldoPorRuta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaSinAbono.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsultaSinAbono.Designer.cs">
+      <DependentUpon>ConsultaSinAbono.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsultaTarjetasPorRuta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsultaTarjetasPorRuta.Designer.cs">
+      <DependentUpon>ConsultaTarjetasPorRuta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="distribuidoraDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>distribuidoraDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ImportarExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportarExcel.Designer.cs">
+      <DependentUpon>ImportarExcel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\dia.cs">
+      <DependentUpon>ModeloDistribuidora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ModeloDistribuidora.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloDistribuidora.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ModeloDistribuidora.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloDistribuidora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ModeloDistribuidora.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeloDistribuidora.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\movimiento.cs">
+      <DependentUpon>ModeloDistribuidora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ruta.cs">
+      <DependentUpon>ModeloDistribuidora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\SaldoPorRuta_Result.cs">
+      <DependentUpon>ModeloDistribuidora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\tarjeta.cs">
+      <DependentUpon>ModeloDistribuidora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\tipomovimiento.cs">
+      <DependentUpon>ModeloDistribuidora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModificarTarjeta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModificarTarjeta.Designer.cs">
+      <DependentUpon>ModificarTarjeta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Movimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Movimiento.Designer.cs">
+      <DependentUpon>Movimiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PantallaPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PantallaPrincipal.Designer.cs">
+      <DependentUpon>PantallaPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Principal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Principal.Designer.cs">
+      <DependentUpon>Principal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReporteSaldoPorRuta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReporteSaldoPorRuta.Designer.cs">
+      <DependentUpon>ReporteSaldoPorRuta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ruta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ruta.Designer.cs">
+      <DependentUpon>Ruta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tarjeta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tarjeta.Designer.cs">
+      <DependentUpon>Tarjeta.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CargarExcel.resx">
+      <DependentUpon>CargarExcel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsultaCobroPorDia.resx">
+      <DependentUpon>ConsultaCobroPorDia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsultaSaldoPorRuta.resx">
+      <DependentUpon>ConsultaSaldoPorRuta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsultaSinAbono.resx">
+      <DependentUpon>ConsultaSinAbono.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsultaTarjetasPorRuta.resx">
+      <DependentUpon>ConsultaTarjetasPorRuta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportarExcel.resx">
+      <DependentUpon>ImportarExcel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModificarTarjeta.resx">
+      <DependentUpon>ModificarTarjeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Movimiento.resx">
+      <DependentUpon>Movimiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PantallaPrincipal.resx">
+      <DependentUpon>PantallaPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Principal.resx">
+      <DependentUpon>Principal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ReporteSaldoPorRuta.resx">
+      <DependentUpon>ReporteSaldoPorRuta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\SaldoPorRuta.rdlc" />
+    <EmbeddedResource Include="Ruta.resx">
+      <DependentUpon>Ruta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tarjeta.resx">
+      <DependentUpon>Tarjeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="Modelo\ModeloDistribuidora.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModeloDistribuidora.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="distribuidoraDataSet.xsc">
+      <DependentUpon>distribuidoraDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="distribuidoraDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>distribuidoraDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="distribuidoraDataSet.xss">
+      <DependentUpon>distribuidoraDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Modelo\ModeloDistribuidora.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloDistribuidora.edmx</DependentUpon>
+      <LastGenOutput>ModeloDistribuidora.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Modelo\ModeloDistribuidora.edmx.diagram">
+      <DependentUpon>ModeloDistribuidora.edmx</DependentUpon>
+    </None>
+    <None Include="Modelo\ModeloDistribuidora.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModeloDistribuidora.edmx</DependentUpon>
+      <LastGenOutput>ModeloDistribuidora.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
