@@ -1,0 +1,73 @@
+delimiter $$
+
+CREATE TABLE `tarjeta_historico` (
+  `idTarjeta` int(11) NOT NULL,
+  `Nombre` varchar(45) NOT NULL,
+  `Apellido1` varchar(45) NOT NULL,
+  `Apellido2` varchar(45) DEFAULT NULL,
+  `Direccion` varchar(300) NOT NULL,
+  `Saldo` decimal(10,2) NOT NULL,
+  `Estado` char(1) NOT NULL,
+  `idRuta` smallint(6) NOT NULL,
+  `FechaCreacion` datetime NOT NULL,
+  `FechaRegistro` datetime NOT NULL,
+  `Agente` char(4) NOT NULL,
+  `CodigoTemporal` varchar(5) DEFAULT NULL,
+  `UltimaModificacion` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idTarjeta`),
+  KEY `idRuta` (`idRuta`),
+  CONSTRAINT `idRuta_h` FOREIGN KEY (`idRuta`) REFERENCES `ruta` (`idRuta`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2924 DEFAULT CHARSET=latin1 COMMENT='				'$$
+
+
+
+delimiter $$
+
+CREATE TABLE `movimiento_historico` (
+  `idTipoMovimiento` smallint(6) NOT NULL,
+  `idTarjeta` int(11) NOT NULL,
+  `Fecha` datetime NOT NULL,
+  `Monto` decimal(10,2) NOT NULL,
+  `Descripcion` varchar(100) NOT NULL,
+  `Agente` char(4) NOT NULL,
+  `Saldo` decimal(10,2) NOT NULL,
+  `FechaAbono` datetime NOT NULL,
+  PRIMARY KEY (`idTipoMovimiento`,`idTarjeta`,`Fecha`),
+  KEY `idTipoMovimiento` (`idTipoMovimiento`),
+  KEY `idTarjeta` (`idTarjeta`),
+  CONSTRAINT `idTarjeta_h` FOREIGN KEY (`idTarjeta`) REFERENCES `tarjeta_historico` (`idTarjeta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `idTipoMovimiento_h` FOREIGN KEY (`idTipoMovimiento`) REFERENCES `tipomovimiento` (`idTipoMovimiento`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='							'$$
+
+
+
+INSERT INTO tarjeta_historico
+SELECT * FROM tarjeta where Estado ='C';
+
+INSERT INTO movimiento_historico
+SELECT m.* FROM movimiento m inner join tarjeta t on 
+m.idTarjeta = t.idTarjeta
+where Estado ='C';
+
+
+delete m.* from movimiento m inner join tarjeta t on 
+m.idTarjeta = t.idTarjeta
+where t.Estado ='C';
+
+delete t.* from tarjeta t where t.Estado = 'C';
+
+INSERT INTO tarjeta_historico
+SELECT * FROM tarjeta where Estado ='H';
+
+INSERT INTO movimiento_historico
+SELECT m.* FROM movimiento m inner join tarjeta t on 
+m.idTarjeta = t.idTarjeta
+where Estado ='H';
+
+
+delete m.* from movimiento m inner join tarjeta t on 
+m.idTarjeta = t.idTarjeta
+where t.Estado ='H';
+
+delete t.* from tarjeta t where t.Estado = 'H';
+
