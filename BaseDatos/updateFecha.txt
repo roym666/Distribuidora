@@ -1,0 +1,19 @@
+
+ 
+select * from distribuidora.movimiento m  
+inner join distribuidora.tarjeta t on m.idtarjeta = t.idtarjeta   
+where t.idruta =25 and date_format(m.fechaabono,'%Y%m%d') = '20151201';  
+
+
+
+update distribuidora.movimiento m  
+inner join distribuidora.tarjeta t on m.idtarjeta = t.idtarjeta   
+set  
+m.fechaabono = Concat('2015-08-22 ',HOUR(m.fechaabono),':',MINUTE(m.fechaabono),':',SECOND(m.fechaabono)) 
+where t.idruta =25 and date_format(m.fechaabono,'%Y%m%d') = '20150821'; 
+
+
+ 
+select * from distribuidora.movimiento m  
+inner join distribuidora.tarjeta t on m.idtarjeta = t.idtarjeta   
+where t.idruta =16 and date_format(m.fechaabono,'%Y-%m-%d') = '2015-03-09'; 

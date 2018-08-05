@@ -1,0 +1,17 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SaldoPorRuta`(parametro int)
+BEGIN
+
+select sum(t.saldo) as Saldo, t.idruta, r.Descripcion, d.Descripcion as Dia, d.idDia from distribuidora.tarjeta t
+inner join distribuidora.ruta r on t.idruta = r.idruta
+inner join distribuidora.dia d on r.idDia = d.idDia
+where t.estado = 'A'
+group by t.idruta
+order by d.iddia;
+
+END

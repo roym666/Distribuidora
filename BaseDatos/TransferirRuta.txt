@@ -1,0 +1,9 @@
+select * from distribuidora.ruta ;
+
+select count(1) from distribuidora.tarjeta where idruta=32;
+
+update distribuidora.tarjeta set idruta = 26 where idruta =32;
+
+delete from distribuidora.ruta where idruta =32;
+
+select count(1) from distribuidora.tarjeta where idruta=26;
