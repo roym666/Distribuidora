@@ -27,6 +27,21 @@
           <Property Name="Saldo" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="FechaAbono" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="movimiento_historico">
+          <Key>
+            <PropertyRef Name="idTipoMovimiento" />
+            <PropertyRef Name="idTarjeta" />
+            <PropertyRef Name="Fecha" />
+          </Key>
+          <Property Name="idTipoMovimiento" Type="smallint" Nullable="false" />
+          <Property Name="idTarjeta" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Monto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Agente" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="Saldo" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="FechaAbono" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="ruta">
           <Key>
             <PropertyRef Name="idRuta" />
@@ -53,6 +68,24 @@
           <Property Name="Agente" Type="char" MaxLength="4" Nullable="false" />
           <Property Name="CodigoTemporal" Type="varchar" MaxLength="5" />
           <Property Name="UltimaModificacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tarjeta_historico">
+          <Key>
+            <PropertyRef Name="idTarjeta" />
+          </Key>
+          <Property Name="idTarjeta" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Apellido1" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Apellido2" Type="varchar" MaxLength="45" />
+          <Property Name="Direccion" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="Saldo" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Estado" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="idRuta" Type="smallint" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+          <Property Name="Agente" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="CodigoTemporal" Type="varchar" MaxLength="5" />
+          <Property Name="UltimaModificacion" Type="varchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="tipomovimiento">
           <Key>
@@ -86,6 +119,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="idRuta_h">
+          <End Role="ruta" Type="Self.ruta" Multiplicity="1" />
+          <End Role="tarjeta_historico" Type="Self.tarjeta_historico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ruta">
+              <PropertyRef Name="idRuta" />
+            </Principal>
+            <Dependent Role="tarjeta_historico">
+              <PropertyRef Name="idRuta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="idTarjeta">
           <End Role="tarjeta" Type="Self.tarjeta" Multiplicity="1" />
           <End Role="movimiento" Type="Self.movimiento" Multiplicity="*" />
@@ -94,6 +139,18 @@
               <PropertyRef Name="idTarjeta" />
             </Principal>
             <Dependent Role="movimiento">
+              <PropertyRef Name="idTarjeta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="idTarjeta_h">
+          <End Role="tarjeta_historico" Type="Self.tarjeta_historico" Multiplicity="1" />
+          <End Role="movimiento_historico" Type="Self.movimiento_historico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tarjeta_historico">
+              <PropertyRef Name="idTarjeta" />
+            </Principal>
+            <Dependent Role="movimiento_historico">
               <PropertyRef Name="idTarjeta" />
             </Dependent>
           </ReferentialConstraint>
@@ -110,14 +167,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="idTipoMovimiento_h">
+          <End Role="tipomovimiento" Type="Self.tipomovimiento" Multiplicity="1" />
+          <End Role="movimiento_historico" Type="Self.movimiento_historico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipomovimiento">
+              <PropertyRef Name="idTipoMovimiento" />
+            </Principal>
+            <Dependent Role="movimiento_historico">
+              <PropertyRef Name="idTipoMovimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="SaldoPorRuta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="distribuidora">
           <Parameter Name="parametro" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="distribuidoraModelStoreContainer">
           <EntitySet Name="dia" EntityType="Self.dia" Schema="distribuidora" store:Type="Tables" />
           <EntitySet Name="movimiento" EntityType="Self.movimiento" Schema="distribuidora" store:Type="Tables" />
+          <EntitySet Name="movimiento_historico" EntityType="Self.movimiento_historico" Schema="distribuidora" store:Type="Tables" />
           <EntitySet Name="ruta" EntityType="Self.ruta" Schema="distribuidora" store:Type="Tables" />
           <EntitySet Name="tarjeta" EntityType="Self.tarjeta" Schema="distribuidora" store:Type="Tables" />
+          <EntitySet Name="tarjeta_historico" EntityType="Self.tarjeta_historico" Schema="distribuidora" store:Type="Tables" />
           <EntitySet Name="tipomovimiento" EntityType="Self.tipomovimiento" Schema="distribuidora" store:Type="Tables" />
           <AssociationSet Name="idDia" Association="Self.idDia">
             <End Role="dia" EntitySet="dia" />
@@ -127,13 +198,25 @@
             <End Role="ruta" EntitySet="ruta" />
             <End Role="tarjeta" EntitySet="tarjeta" />
           </AssociationSet>
+          <AssociationSet Name="idRuta_h" Association="Self.idRuta_h">
+            <End Role="ruta" EntitySet="ruta" />
+            <End Role="tarjeta_historico" EntitySet="tarjeta_historico" />
+          </AssociationSet>
           <AssociationSet Name="idTarjeta" Association="Self.idTarjeta">
             <End Role="tarjeta" EntitySet="tarjeta" />
             <End Role="movimiento" EntitySet="movimiento" />
           </AssociationSet>
+          <AssociationSet Name="idTarjeta_h" Association="Self.idTarjeta_h">
+            <End Role="tarjeta_historico" EntitySet="tarjeta_historico" />
+            <End Role="movimiento_historico" EntitySet="movimiento_historico" />
+          </AssociationSet>
           <AssociationSet Name="idTipoMovimiento" Association="Self.idTipoMovimiento">
             <End Role="tipomovimiento" EntitySet="tipomovimiento" />
             <End Role="movimiento" EntitySet="movimiento" />
+          </AssociationSet>
+          <AssociationSet Name="idTipoMovimiento_h" Association="Self.idTipoMovimiento_h">
+            <End Role="tipomovimiento" EntitySet="tipomovimiento" />
+            <End Role="movimiento_historico" EntitySet="movimiento_historico" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -164,6 +247,20 @@
           <AssociationSet Name="idRuta" Association="distribuidoraModel.idRuta">
             <End Role="ruta" EntitySet="ruta" />
             <End Role="tarjeta" EntitySet="tarjeta" />
+          </AssociationSet>
+          <EntitySet Name="movimiento_historico" EntityType="distribuidoraModel.movimiento_historico" />
+          <EntitySet Name="tarjeta_historico" EntityType="distribuidoraModel.tarjeta_historico" />
+          <AssociationSet Name="idTarjeta_h" Association="distribuidoraModel.idTarjeta_h">
+            <End Role="tarjeta_historico" EntitySet="tarjeta_historico" />
+            <End Role="movimiento_historico" EntitySet="movimiento_historico" />
+          </AssociationSet>
+          <AssociationSet Name="idTipoMovimiento_h" Association="distribuidoraModel.idTipoMovimiento_h">
+            <End Role="tipomovimiento" EntitySet="tipomovimiento" />
+            <End Role="movimiento_historico" EntitySet="movimiento_historico" />
+          </AssociationSet>
+          <AssociationSet Name="idRuta_h" Association="distribuidoraModel.idRuta_h">
+            <End Role="ruta" EntitySet="ruta" />
+            <End Role="tarjeta_historico" EntitySet="tarjeta_historico" />
           </AssociationSet>
           </EntityContainer>
         <ComplexType Name="SaldoPorRuta_Result" />
@@ -202,6 +299,7 @@
           <Property Name="idDia" Type="SByte" />
           <NavigationProperty Name="dia" Relationship="distribuidoraModel.idDia" FromRole="ruta" ToRole="dia" />
           <NavigationProperty Name="tarjeta" Relationship="distribuidoraModel.idRuta" FromRole="ruta" ToRole="tarjeta" />
+          <NavigationProperty Name="tarjeta_historico" Relationship="distribuidoraModel.idRuta_h" FromRole="ruta" ToRole="tarjeta_historico" />
         </EntityType>
         <EntityType Name="tarjeta">
           <Key>
@@ -231,6 +329,7 @@
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="Naturaleza" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="movimiento" Relationship="distribuidoraModel.idTipoMovimiento" FromRole="tipomovimiento" ToRole="movimiento" />
+          <NavigationProperty Name="movimiento_historico" Relationship="distribuidoraModel.idTipoMovimiento_h" FromRole="tipomovimiento" ToRole="movimiento_historico" />
         </EntityType>
         <Association Name="idDia">
           <End Type="distribuidoraModel.dia" Role="dia" Multiplicity="0..1" />
@@ -276,6 +375,79 @@
               <PropertyRef Name="idRuta" />
             </Principal>
             <Dependent Role="tarjeta">
+              <PropertyRef Name="idRuta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="movimiento_historico">
+          <Key>
+            <PropertyRef Name="idTipoMovimiento" />
+            <PropertyRef Name="idTarjeta" />
+            <PropertyRef Name="Fecha" />
+          </Key>
+          <Property Name="idTipoMovimiento" Type="Int16" Nullable="false" />
+          <Property Name="idTarjeta" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" />
+          <Property Name="Monto" Type="Decimal" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Agente" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="Saldo" Type="Decimal" Nullable="false" />
+          <Property Name="FechaAbono" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="tarjeta_historico" Relationship="distribuidoraModel.idTarjeta_h" FromRole="movimiento_historico" ToRole="tarjeta_historico" />
+          <NavigationProperty Name="tipomovimiento" Relationship="distribuidoraModel.idTipoMovimiento_h" FromRole="movimiento_historico" ToRole="tipomovimiento" />
+        </EntityType>
+        <EntityType Name="tarjeta_historico">
+          <Key>
+            <PropertyRef Name="idTarjeta" />
+          </Key>
+          <Property Name="idTarjeta" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido1" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Saldo" Type="Decimal" Nullable="false" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="idRuta" Type="Int16" Nullable="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" />
+          <Property Name="FechaRegistro" Type="DateTime" Nullable="false" />
+          <Property Name="Agente" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoTemporal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="UltimaModificacion" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="movimiento_historico" Relationship="distribuidoraModel.idTarjeta_h" FromRole="tarjeta_historico" ToRole="movimiento_historico" />
+          <NavigationProperty Name="ruta" Relationship="distribuidoraModel.idRuta_h" FromRole="tarjeta_historico" ToRole="ruta" />
+        </EntityType>
+        <Association Name="idTarjeta_h">
+          <End Type="distribuidoraModel.tarjeta_historico" Role="tarjeta_historico" Multiplicity="1" />
+          <End Type="distribuidoraModel.movimiento_historico" Role="movimiento_historico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tarjeta_historico">
+              <PropertyRef Name="idTarjeta" />
+            </Principal>
+            <Dependent Role="movimiento_historico">
+              <PropertyRef Name="idTarjeta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="idTipoMovimiento_h">
+          <End Type="distribuidoraModel.tipomovimiento" Role="tipomovimiento" Multiplicity="1" />
+          <End Type="distribuidoraModel.movimiento_historico" Role="movimiento_historico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipomovimiento">
+              <PropertyRef Name="idTipoMovimiento" />
+            </Principal>
+            <Dependent Role="movimiento_historico">
+              <PropertyRef Name="idTipoMovimiento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="idRuta_h">
+          <End Type="distribuidoraModel.ruta" Role="ruta" Multiplicity="1" />
+          <End Type="distribuidoraModel.tarjeta_historico" Role="tarjeta_historico" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ruta">
+              <PropertyRef Name="idRuta" />
+            </Principal>
+            <Dependent Role="tarjeta_historico">
               <PropertyRef Name="idRuta" />
             </Dependent>
           </ReferentialConstraint>
@@ -348,6 +520,39 @@
                 <ScalarProperty Name="Naturaleza" ColumnName="Naturaleza" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="idTipoMovimiento" ColumnName="idTipoMovimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="movimiento_historico">
+            <EntityTypeMapping TypeName="distribuidoraModel.movimiento_historico">
+              <MappingFragment StoreEntitySet="movimiento_historico">
+                <ScalarProperty Name="FechaAbono" ColumnName="FechaAbono" />
+                <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+                <ScalarProperty Name="Agente" ColumnName="Agente" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="idTarjeta" ColumnName="idTarjeta" />
+                <ScalarProperty Name="idTipoMovimiento" ColumnName="idTipoMovimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tarjeta_historico">
+            <EntityTypeMapping TypeName="distribuidoraModel.tarjeta_historico">
+              <MappingFragment StoreEntitySet="tarjeta_historico">
+                <ScalarProperty Name="UltimaModificacion" ColumnName="UltimaModificacion" />
+                <ScalarProperty Name="CodigoTemporal" ColumnName="CodigoTemporal" />
+                <ScalarProperty Name="Agente" ColumnName="Agente" />
+                <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="idRuta" ColumnName="idRuta" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Apellido2" ColumnName="Apellido2" />
+                <ScalarProperty Name="Apellido1" ColumnName="Apellido1" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="idTarjeta" ColumnName="idTarjeta" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

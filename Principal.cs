@@ -17,6 +17,7 @@ namespace Distribuidora
         ReporteSaldoPorRuta saldoPorRuta;
         Ruta ruta;
         ConsultaCobroPorDia cobroPorDia;
+        EliminarTarjeta eliminarTarjeta;
         public Principal()
         {
             InitializeComponent();
@@ -103,6 +104,16 @@ namespace Distribuidora
                 cobroPorDia = new ConsultaCobroPorDia();
                 cobroPorDia.MdiParent = this;
                 cobroPorDia.Show();
+            }
+        }
+
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (eliminarTarjeta == null || !eliminarTarjeta.Visible)
+            {
+                eliminarTarjeta = new EliminarTarjeta();
+                eliminarTarjeta.MdiParent = this;
+                eliminarTarjeta.Show();
             }
         }
     }

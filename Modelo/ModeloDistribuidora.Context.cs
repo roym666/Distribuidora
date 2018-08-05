@@ -34,6 +34,8 @@ namespace Distribuidora.Modelo
         public DbSet<ruta> ruta { get; set; }
         public DbSet<tarjeta> tarjeta { get; set; }
         public DbSet<tipomovimiento> tipomovimiento { get; set; }
+        public DbSet<movimiento_historico> movimiento_historico { get; set; }
+        public DbSet<tarjeta_historico> tarjeta_historico { get; set; }
     
         public virtual ObjectResult<SaldoPorRuta_Result> SaldoPorRuta(Nullable<int> parametro)
         {

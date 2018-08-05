@@ -12,19 +12,18 @@ namespace Distribuidora.Modelo
     using System;
     using System.Collections.Generic;
     
-    public partial class tipomovimiento
+    public partial class movimiento_historico
     {
-        public tipomovimiento()
-        {
-            this.movimiento = new HashSet<movimiento>();
-            this.movimiento_historico = new HashSet<movimiento_historico>();
-        }
-    
         public short idTipoMovimiento { get; set; }
+        public int idTarjeta { get; set; }
+        public System.DateTime Fecha { get; set; }
+        public decimal Monto { get; set; }
         public string Descripcion { get; set; }
-        public bool Naturaleza { get; set; }
+        public string Agente { get; set; }
+        public decimal Saldo { get; set; }
+        public System.DateTime FechaAbono { get; set; }
     
-        public virtual ICollection<movimiento> movimiento { get; set; }
-        public virtual ICollection<movimiento_historico> movimiento_historico { get; set; }
+        public virtual tarjeta_historico tarjeta_historico { get; set; }
+        public virtual tipomovimiento tipomovimiento { get; set; }
     }
 }

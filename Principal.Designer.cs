@@ -44,6 +44,7 @@
             this.rutaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.agregarRutaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,29 +65,30 @@
             this.tarjetasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.principalToolStripMenuItem,
             this.importarExcelToolStripMenuItem,
-            this.cargarExcelToolStripMenuItem});
+            this.cargarExcelToolStripMenuItem,
+            this.eliminarToolStripMenuItem});
             this.tarjetasToolStripMenuItem.Name = "tarjetasToolStripMenuItem";
-            this.tarjetasToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.tarjetasToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.tarjetasToolStripMenuItem.Text = "Tarjetas";
             // 
             // principalToolStripMenuItem
             // 
             this.principalToolStripMenuItem.Name = "principalToolStripMenuItem";
-            this.principalToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.principalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.principalToolStripMenuItem.Text = "Abonos";
             this.principalToolStripMenuItem.Click += new System.EventHandler(this.principalToolStripMenuItem_Click);
             // 
             // importarExcelToolStripMenuItem
             // 
             this.importarExcelToolStripMenuItem.Name = "importarExcelToolStripMenuItem";
-            this.importarExcelToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.importarExcelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.importarExcelToolStripMenuItem.Text = "Leer Excel";
             this.importarExcelToolStripMenuItem.Click += new System.EventHandler(this.importarExcelToolStripMenuItem_Click);
             // 
             // cargarExcelToolStripMenuItem
             // 
             this.cargarExcelToolStripMenuItem.Name = "cargarExcelToolStripMenuItem";
-            this.cargarExcelToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.cargarExcelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cargarExcelToolStripMenuItem.Text = "Cargar Excel";
             this.cargarExcelToolStripMenuItem.Click += new System.EventHandler(this.cargarExcelToolStripMenuItem_Click);
             // 
@@ -104,28 +106,28 @@
             // diarioToolStripMenuItem
             // 
             this.diarioToolStripMenuItem.Name = "diarioToolStripMenuItem";
-            this.diarioToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.diarioToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.diarioToolStripMenuItem.Text = "Tarjetas sin Abono";
             this.diarioToolStripMenuItem.Click += new System.EventHandler(this.diarioToolStripMenuItem_Click);
             // 
             // tarjetasPorRutaToolStripMenuItem
             // 
             this.tarjetasPorRutaToolStripMenuItem.Name = "tarjetasPorRutaToolStripMenuItem";
-            this.tarjetasPorRutaToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.tarjetasPorRutaToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.tarjetasPorRutaToolStripMenuItem.Text = "Tarjetas por Ruta";
             this.tarjetasPorRutaToolStripMenuItem.Click += new System.EventHandler(this.tarjetasPorRutaToolStripMenuItem_Click);
             // 
             // saldoPorRutaToolStripMenuItem
             // 
             this.saldoPorRutaToolStripMenuItem.Name = "saldoPorRutaToolStripMenuItem";
-            this.saldoPorRutaToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.saldoPorRutaToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.saldoPorRutaToolStripMenuItem.Text = "Saldo por Ruta";
             this.saldoPorRutaToolStripMenuItem.Click += new System.EventHandler(this.saldoPorRutaToolStripMenuItem_Click);
             // 
             // totalDeMovimientosToolStripMenuItem
             // 
             this.totalDeMovimientosToolStripMenuItem.Name = "totalDeMovimientosToolStripMenuItem";
-            this.totalDeMovimientosToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.totalDeMovimientosToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.totalDeMovimientosToolStripMenuItem.Text = "Total de Movimientos";
             this.totalDeMovimientosToolStripMenuItem.Click += new System.EventHandler(this.totalDeMovimientosToolStripMenuItem_Click);
             // 
@@ -151,7 +153,14 @@
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(66, 13);
             this.lblVersion.TabIndex = 3;
-            this.lblVersion.Text = "Version1.0.6";
+            this.lblVersion.Text = "Version1.0.7";
+            // 
+            // eliminarToolStripMenuItem
+            // 
+            this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
+            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eliminarToolStripMenuItem.Text = "Eliminar";
+            this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
             // 
             // Principal
             // 
@@ -189,6 +198,7 @@
         private System.Windows.Forms.ToolStripMenuItem agregarRutaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem totalDeMovimientosToolStripMenuItem;
         private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
     }
 }
 

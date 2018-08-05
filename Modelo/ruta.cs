@@ -17,6 +17,7 @@ namespace Distribuidora.Modelo
         public ruta()
         {
             this.tarjeta = new HashSet<tarjeta>();
+            this.tarjeta_historico = new HashSet<tarjeta_historico>();
         }
     
         public short idRuta { get; set; }
@@ -26,5 +27,6 @@ namespace Distribuidora.Modelo
     
         public virtual dia dia { get; set; }
         public virtual ICollection<tarjeta> tarjeta { get; set; }
+        public virtual ICollection<tarjeta_historico> tarjeta_historico { get; set; }
     }
 }

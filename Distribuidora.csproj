@@ -129,6 +129,9 @@
     <Compile Include="Modelo\movimiento.cs">
       <DependentUpon>ModeloDistribuidora.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\movimiento_historico.cs">
+      <DependentUpon>ModeloDistribuidora.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modelo\ruta.cs">
       <DependentUpon>ModeloDistribuidora.tt</DependentUpon>
     </Compile>
@@ -136,6 +139,9 @@
       <DependentUpon>ModeloDistribuidora.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\tarjeta.cs">
+      <DependentUpon>ModeloDistribuidora.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\tarjeta_historico.cs">
       <DependentUpon>ModeloDistribuidora.tt</DependentUpon>
     </Compile>
     <Compile Include="Modelo\tipomovimiento.cs">
@@ -172,6 +178,12 @@
     </Compile>
     <Compile Include="ReporteSaldoPorRuta.Designer.cs">
       <DependentUpon>ReporteSaldoPorRuta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EliminarTarjeta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EliminarTarjeta.Designer.cs">
+      <DependentUpon>EliminarTarjeta.cs</DependentUpon>
     </Compile>
     <Compile Include="Ruta.cs">
       <SubType>Form</SubType>
@@ -228,6 +240,9 @@
       <DependentUpon>ReporteSaldoPorRuta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\SaldoPorRuta.rdlc" />
+    <EmbeddedResource Include="EliminarTarjeta.resx">
+      <DependentUpon>EliminarTarjeta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ruta.resx">
       <DependentUpon>Ruta.cs</DependentUpon>
     </EmbeddedResource>

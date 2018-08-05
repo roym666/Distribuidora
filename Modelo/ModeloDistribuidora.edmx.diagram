@@ -14,6 +14,11 @@
         <AssociationConnector Association="distribuidoraModel.idTarjeta" />
         <AssociationConnector Association="distribuidoraModel.idTipoMovimiento" />
         <AssociationConnector Association="distribuidoraModel.idRuta" />
+        <EntityTypeShape EntityType="distribuidoraModel.movimiento_historico" Width="1.5" PointX="7.5" PointY="8.125" />
+        <EntityTypeShape EntityType="distribuidoraModel.tarjeta_historico" Width="1.5" PointX="5.25" PointY="9.125" />
+        <AssociationConnector Association="distribuidoraModel.idTarjeta_h" />
+        <AssociationConnector Association="distribuidoraModel.idTipoMovimiento_h" />
+        <AssociationConnector Association="distribuidoraModel.idRuta_h" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
